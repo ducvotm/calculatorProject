@@ -1,20 +1,18 @@
-// Create Stack using LinkedList
-// Declare Node class
-public class Node {
-    int number;
-    Node next;
+public class Main {
+       public static void main(String[] args) {
+           Stack testStack = new Stack();
+
+           // Puss 9 element to the stack
+           for (int element = 0; element < 10; element++) {
+               testStack.push(element);
+           }
+
+           // Pop the item
+           testStack.pop();
+
+           // Print the Stack
+           testStack.printStack();
+       }
 }
 
-// Declare Stack class
-public class Stack {
-    // Declare the head of the stack
-    Node headNode;
-
-   // Declare push method
-   public void push(int element) {
-       Node newNode = new Node(element); // Create new node for new element
-       newNode.next = headNode; // the node next of newNode point headNode
-       headNode = newNode; // Update the value of the newNode by the value of the newNode
-   }
-}
 
