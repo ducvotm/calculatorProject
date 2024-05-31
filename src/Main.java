@@ -2,7 +2,7 @@ public class Main {
        public static void main(String[] args) {
            Stack testStack = new Stack();
 
-           // Puss 9 element to the stack
+           // Push 9 element to the stack
            for (int element = 0; element < 10; element++) {
                testStack.push(element);
            }
