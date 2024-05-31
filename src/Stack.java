@@ -16,15 +16,20 @@ public class Stack {
 
     // Declare pop method
     public void pop() {
-            headNode = headNode.next;
+            headNode = headNode.next; // Point the head node to the second element in the Stack
         }
 
     // Print the stack
     public void printStack() {
+        // Declare template to traverse the Stack
         Node tempNode = headNode;
 
+        // Ensure the stack is empty
         while (tempNode != null) {
+            // Print the number field of the node
             System.out.println(tempNode.number);
+
+            // Move to the next node in stack
             tempNode = tempNode.next;
         }
     }
