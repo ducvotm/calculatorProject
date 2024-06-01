@@ -21,13 +21,13 @@ public class Stack {
 
     // Print the stack
     public void printStack() {
-        // Declare template to traverse the Stack
+        // Declare tempNode to traverse the Stack
         Node tempNode = headNode;
 
         // Ensure the stack is empty
         while (tempNode != null) {
             // Print the number field of the node
-            System.out.println(tempNode.number);
+            System.out.printf("%d, ", tempNode.number);
 
             // Move to the next node in stack
             tempNode = tempNode.next;
