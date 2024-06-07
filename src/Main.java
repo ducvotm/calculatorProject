@@ -1,27 +1,34 @@
+import java.util.Scanner;
+import java.util.regex.*;
 public class Main {
     public static void main(String[] args) {
-           Stack testStack = new Stack();
-           Queue testQueue = new Queue();
+        // Input the expression
+        Scanner scanner = new Scanner(System.in);
+        String expression = scanner.nextLine();
 
-           // Adding
-           for (int element = 0; element < 10; element++) {
-               testStack.push(element);
-               testQueue.add(element);
-           }
+        // Ensure the expression is valid
+        if (isValid(expression)) {
+            System.out.println(true);
+        } else {
+            System.out.println(false);
+        }
+    }
 
-           // Remove
-           testStack.pop();
-           testQueue.remove();
-
-           // Print
-           System.out.print("Stack: ");
-           testStack.printStack();
-
-           System.out.println();
-
-           System.out.print("Queue: ");
-           testQueue.printQueue();
-       }
+    public static boolean isValid(String input) {
+        // Declare variable to check the status of validate
+        boolean validateStatus = true;
+        for (int i = 0; i < input.length(); i++) {
+            String element = Character.toString(input.charAt(i));
+            // Numeric checking and sign checking
+            if (!element.matches("\\d") && !element.matches("[\\+\\-\\*/()]")) {
+                validateStatus = false;
+                break;
+            }
+        }
+        return validateStatus;
+    }
 }
+
+
 
 
