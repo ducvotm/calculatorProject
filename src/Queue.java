@@ -7,12 +7,12 @@ public class Queue {
     Node tailNode;
 
    // Declare enqueue method to insert new element to the end of the end of the list
-    public void add(int element) {
+    public void add(String element) {
         // Declare newNode for new elements
         Node newNode = new Node();
 
         // Declare each field of newNode to the end of the Queue
-        newNode.number = element;
+        newNode.data = element;
         newNode.next = null;
 
         // Checking if the element is the first one
@@ -44,7 +44,7 @@ public class Queue {
         // Checking if the Queue is empty
         while (tempNode != null) {
             // Print the number field of the node
-            System.out.printf("%d, ",tempNode.number);
+            System.out.printf("%s, ",tempNode.data);
 
             // Move to the next Node
             tempNode = tempNode.next;

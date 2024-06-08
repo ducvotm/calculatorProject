@@ -1,5 +1,5 @@
 public class Node {
     // Declare Node class
-    int number;
+    String data;
     Node next;
 }
