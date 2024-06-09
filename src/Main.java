@@ -23,44 +23,43 @@ public class Main {
                     // Push it into the stack
                     numStack.push(element);
                 }
+
                 // If it's an operator,
-                if (isOperator(element)) {
-                    // Check if it is the first element of the stack
-                    if (opStack.isEmpty()) {
+                else if (isOperator(element) && opStack.isEmpty()) {
+                    opStack.push(element);
+                }
+
+                //compare its precedence with the operator on the top of opStack.
+                else if (isOperator(element) && !opStack.isEmpty()) {
+                    // If it's higher, push it into opStack.
+                    if (getRank(element) > getRank(opStack.peek())) {
                         opStack.push(element);
-                    //compare its precedence with the operator on the top of opStack.
                     } else {
-                        // If it's higher, push it into opStack.
-                        if (getRank(element) > getRank(opStack.peek())) {
-                            opStack.push(element);
-
                         // If it's lower or equal, pop operators from opStack and numbers from numStack,
-                        } else {
-                            // push the new operator to the opStack
+                        while (!numStack.isFirst() && getRank(element) <= getRank(opStack.peek())) {
                             String operator = opStack.pop();
-                            // Check if it is the first at numStack
-                            if (!numStack.isFirst()){
-                                int left = Integer.parseInt(numStack.pop());
-                                int right = Integer.parseInt(numStack.pop());
+                            int right = Integer.parseInt(numStack.pop());
+                            int left = Integer.parseInt(numStack.pop());
 
-                                // until the operator on the top of opStack has lower precedence. Then, push the current operator into opStack.
-                                // Stop here
-                                /*do {
-                                    // perform the operations, and push the result back into numStack,
-                                    String result = Integer.toString(getResult(operator, left, right));
-                                    numStack.push(result);
-                                } while (getRank(element) > getRank(opStack.peek()));
-                                opStack.push(element);
-                                 */
-                            }
+                            // perform the operations,
+                            String result = Integer.toString(getResult(operator, left, right));
+                            numStack.push(result);
                         }
+                        // push the result back into numStack,
+                        opStack.push(element);
                     }
                 }
             }
         }
-        opStack.printStack();
-        System.out.println(" ");
-        numStack.printStack();
+        // After the loop, process any remaining operators in the operator stack
+        while (!opStack.isEmpty()) {
+            String operator = opStack.pop();
+            int right = Integer.parseInt(numStack.pop());
+            int left = Integer.parseInt(numStack.pop());
+            String result = Integer.toString(getResult(operator, left, right));
+            numStack.push(result);
+        }
+        System.out.println(numStack.peek());
     }
 
     public static boolean isValid(String input) {
@@ -94,15 +93,15 @@ public class Main {
     }
 
     public static int getRank(String operator) {
-       if (operator == "*" || operator == "/") {
-           return 3;
-       } else if (operator == "+" || operator == "-") {
-           return 2;
-       } else if (operator == "(" || operator == ")") {
-           return 1;
-       } else {
-           return 0;
-       }
+        if (operator.equals("*") || operator.equals("/")) {
+            return 3;
+        } else if (operator.equals("+") || operator.equals("-")) {
+            return 2;
+        } else if (operator.equals("(") || operator.equals(")")) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public static int getResult(String operator, int left, int right) {
