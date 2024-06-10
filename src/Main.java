@@ -54,10 +54,12 @@ public class Main {
         // After the loop, process any remaining operators in the operator stack
         while (!opStack.isEmpty()) {
             String operator = opStack.pop();
-            int right = Integer.parseInt(numStack.pop());
-            int left = Integer.parseInt(numStack.pop());
-            String result = Integer.toString(getResult(operator, left, right));
-            numStack.push(result);
+            if (!(operator.equals("(") || operator.equals(")"))){
+                int right = Integer.parseInt(numStack.pop());
+                int left = Integer.parseInt(numStack.pop());
+                String result = Integer.toString(getResult(operator, left, right));
+                numStack.push(result);
+            }
         }
         System.out.println(numStack.peek());
     }
@@ -86,7 +88,7 @@ public class Main {
 
     public static boolean isOperator(String element) {
         boolean operatorStatus = false;
-        if (element.matches("[\\+\\-\\*/]")) {
+        if (element.matches("[\\+\\-\\*/()]")) {
             operatorStatus = true;
         }
         return operatorStatus;
@@ -115,7 +117,7 @@ public class Main {
             case "/":
                 return left / right;
             default:
-                return -1;
+                return 0;
         }
     }
 }
