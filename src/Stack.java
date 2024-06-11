@@ -8,10 +8,10 @@ public class Stack {
     public void push(String element) {
         Node newNode = new Node(); // Create new node for new element
 
-        newNode.data = element; // Setting the number field of the new Node
-        newNode.next = headNode; // the node next of newNode point headNode
+        newNode.data = element; // Setting the data field of the new Node
+        newNode.next = headNode; // the node next of newNode point headNode =>> b/c both point to null
 
-        headNode = newNode; // Update the value of the newNode by the value of the newNode
+        headNode = newNode; // Update the value of the headNode by the value of the newNode
     }
 
     // Declare pop method
@@ -19,9 +19,10 @@ public class Stack {
         Node tempNode = headNode;
         headNode = headNode.next; // Point the head node to the second element in the Stack
         return tempNode.data;
+        // return null + message =>>
     }
 
-    // Declare checking if it is the firstc element
+    // Declare checking if it is the first element
     public boolean isEmpty() {
         boolean isEmptyStatus = false;
         if (headNode == null) {

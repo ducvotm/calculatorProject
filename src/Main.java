@@ -10,6 +10,7 @@ public class Main {
         Stack numStack = new Stack();
         Stack opStack = new Stack();
 
+
         // Ensure the expression is valid
         if (!isValid(expression)) {
             System.out.println("The expression is not valid");
@@ -64,34 +65,26 @@ public class Main {
         System.out.println(numStack.peek());
     }
 
+    // Check lai ko dung for
     public static boolean isValid(String input) {
-        // Declare variable to check the status of validate
-        boolean validateStatus = true;
-        for (int i = 0; i < input.length(); i++) {
-            String element = Character.toString(input.charAt(i));
-            // Numeric checking and sign checking
-            if (!element.matches("\\d") && !element.matches("[\\+\\-\\*/()]")) {
-                validateStatus = false;
-                break;
-            }
+        if (input.matches("^[\\d\\+\\-\\*/()\\s]*$")){
+            return true;
         }
-        return validateStatus;
+        return false;
     }
 
     public static boolean isOperand(String element) {
-        boolean operandStatus = false;
         if (element.matches("[0-9]")) {
-            operandStatus = true;
+            return true;
         }
-        return operandStatus;
+        return false;
     }
 
     public static boolean isOperator(String element) {
-        boolean operatorStatus = false;
         if (element.matches("[\\+\\-\\*/()]")) {
-            operatorStatus = true;
+            return true;
         }
-        return operatorStatus;
+        return false;
     }
 
     public static int getRank(String operator) {
