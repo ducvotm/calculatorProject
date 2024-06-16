@@ -14,30 +14,32 @@ public class Stack {
         headNode = newNode; // Update the value of the headNode by the value of the newNode
     }
 
-    // Declare pop method
+    // Declare pop method (have practice feedback from Coach)
     public String pop() {
-        Node tempNode = headNode;
-        headNode = headNode.next; // Point the head node to the second element in the Stack
-        return tempNode.data;
+        if (isEmpty()) {
+            return null;
+        } else {
+            Node tempNode = headNode;
+            headNode = headNode.next; // Point the head node to the second element in the Stack
+            return tempNode.data;
+        }
         // return null + message =>>
     }
 
     // Declare checking if it is the first element
     public boolean isEmpty() {
-        boolean isEmptyStatus = false;
         if (headNode == null) {
-            isEmptyStatus = true;
+            return true;
         }
-        return isEmptyStatus;
+        return false;
     }
 
     // Declare checking if it is the firstc element
     public boolean isFirst() {
-        boolean isFirstStatus = false;
         if (headNode.next == null) {
-            isFirstStatus = true;
+            return true;
         }
-        return isFirstStatus;
+        return false;
     }
 
 
